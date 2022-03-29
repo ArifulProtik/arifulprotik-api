@@ -1,0 +1,5 @@
+.idea/
+app.env
+go.sum
+tmp/
+arifulprotik-api
