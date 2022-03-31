@@ -18,7 +18,7 @@ func GenAccessToken(ctx context.Context, userID uuid.UUID) (string, error) {
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, &JwtCustomClaim{
 		ID: userID,
 		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(time.Hour * 1).Unix(),
+			ExpiresAt: time.Now().Add(time.Second * 10).Unix(),
 			IssuedAt:  time.Now().Unix(),
 		},
 	})
