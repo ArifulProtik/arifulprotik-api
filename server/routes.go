@@ -1,13 +1,14 @@
 package server
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/ArifulProtik/arifulprotik-api/controllers"
+	"github.com/gofiber/fiber/v2"
+)
 
 func publicroutes(e fiber.Router) {
-	e.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"Message": "Hello",
-		})
-	})
+	e.Post("/user/signup", controllers.Signup)
+	e.Post("/user/signin", controllers.Signin)
+
 }
 
 func router(e *fiber.App) {

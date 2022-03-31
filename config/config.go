@@ -20,6 +20,7 @@ type ServerConfig struct {
 	Version string `mapstructure:"VERSION"`
 	Status  string `mapstructure:"STATUS"`
 	Port    string `mapstructure:"PORT"`
+	Jwt_Key string `mapstructure:"JWT_KEY"`
 }
 type Postegres struct {
 	DB_HOST string `mapstructure:"DB_HOST"`

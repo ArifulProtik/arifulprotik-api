@@ -47,8 +47,16 @@ func RunServer() {
 		ServerHeader:  "ArifulProtik.xyz",
 	})
 	app.Use(logger.New())
-
+	//app.Use(func() fiber.Handler {
+	//	return func(c *fiber.Ctx) error {
+	//		c.Accepts("json", "text")
+	//		c.Status(500).JSON(fiber.Map{
+	//			"Error": "Provide Fuck",
+	//		})
+	//		return nil
+	//	}
+	//})
 	router(app)
-
 	startServerWithGracefulShutdown(app)
+	//log.Fatal(app.Listen(config.C.Port))
 }
