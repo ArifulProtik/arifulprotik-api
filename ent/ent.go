@@ -8,6 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/ArifulProtik/arifulprotik-api/ent/auth"
 	"github.com/ArifulProtik/arifulprotik-api/ent/user"
 )
 
@@ -29,6 +30,7 @@ type OrderFunc func(*sql.Selector)
 // columnChecker returns a function indicates if the column exists in the given column.
 func columnChecker(table string) func(string) error {
 	checks := map[string]func(string) bool{
+		auth.Table: auth.ValidColumn,
 		user.Table: user.ValidColumn,
 	}
 	check, ok := checks[table]

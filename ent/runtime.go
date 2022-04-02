@@ -5,6 +5,7 @@ package ent
 import (
 	"time"
 
+	"github.com/ArifulProtik/arifulprotik-api/ent/auth"
 	"github.com/ArifulProtik/arifulprotik-api/ent/schema"
 	"github.com/ArifulProtik/arifulprotik-api/ent/user"
 	"github.com/google/uuid"
@@ -14,6 +15,20 @@ import (
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
+	authFields := schema.Auth{}.Fields()
+	_ = authFields
+	// authDescIsBlocked is the schema descriptor for is_blocked field.
+	authDescIsBlocked := authFields[3].Descriptor()
+	// auth.DefaultIsBlocked holds the default value on creation for the is_blocked field.
+	auth.DefaultIsBlocked = authDescIsBlocked.Default.(bool)
+	// authDescCreatedAt is the schema descriptor for created_at field.
+	authDescCreatedAt := authFields[5].Descriptor()
+	// auth.DefaultCreatedAt holds the default value on creation for the created_at field.
+	auth.DefaultCreatedAt = authDescCreatedAt.Default.(func() time.Time)
+	// authDescID is the schema descriptor for id field.
+	authDescID := authFields[0].Descriptor()
+	// auth.DefaultID holds the default value on creation for the id field.
+	auth.DefaultID = authDescID.Default.(func() uuid.UUID)
 	userFields := schema.User{}.Fields()
 	_ = userFields
 	// userDescName is the schema descriptor for name field.

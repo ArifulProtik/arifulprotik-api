@@ -11,6 +11,7 @@ import (
 func publicroutes(e fiber.Router) {
 	e.Post("/user/signup", controllers.Signup)
 	e.Post("/user/signin", controllers.Signin)
+	e.Post("/user/auth/refresh", controllers.Refresh)
 
 }
 func privateroutes(e fiber.Router) {

@@ -8,6 +8,22 @@ import (
 )
 
 var (
+	// AuthsColumns holds the columns for the "auths" table.
+	AuthsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUUID},
+		{Name: "userid", Type: field.TypeUUID},
+		{Name: "rf_uuid", Type: field.TypeUUID},
+		{Name: "is_blocked", Type: field.TypeBool, Default: false},
+		{Name: "rf_token", Type: field.TypeString},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "expire_at", Type: field.TypeInt64},
+	}
+	// AuthsTable holds the schema information for the "auths" table.
+	AuthsTable = &schema.Table{
+		Name:       "auths",
+		Columns:    AuthsColumns,
+		PrimaryKey: []*schema.Column{AuthsColumns[0]},
+	}
 	// UsersColumns holds the columns for the "users" table.
 	UsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeUUID},
@@ -26,6 +42,7 @@ var (
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
+		AuthsTable,
 		UsersTable,
 	}
 )
